@@ -89,8 +89,14 @@ chunks of audio, 0.1 voice activation threshold.
 
 The output of this can be streamed to a file (and picked up by another process). When you do this keepin the step size equal to the chunk size ensures that a single version of each chunk is written. If the step size is less than the chunk size then each version of the chunk is written as each step is processed.
 
-    ./stream -m models/ggml-large-v3.bin -t 10 --step 2000 --length 2000 --keep 500 \
-        -vth 0.1 -kc -f /tmp/audio.txt
+    ./stream -m models/ggml-large-v3.bin -t 10 --step 3000 --length 3000 --keep 0 \
+        -vth 0.6 -kc -f /tmp/audio.txt
+
+Different invocations work better for different contexts. For example streaming my own voice
+when I'm speaking clearly works fine with the small model.
+
+    ./stream -m models/ggml-small.en.bin -t 10 --step 2000 --length 2000 --keep 500 \
+        -vth 0.1 -f /tmp/audio.txt
 
 ## ffmpeg cheatsheet
 
