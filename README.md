@@ -2,13 +2,15 @@
 
 Try voice recognition with whisper.
 
-## Install
+## [OpenAI whisper](https://github.com/openai/whisper)
+
+### Install
 
     pip install -U openai-whisper
     brew install ffmpeg
     pip install setuptools-rust
 
-## Voice to Text
+### Voice to Text
 
     whisper ./sample/the-time-machione/the-time-machine.m4a --model small.en
 
@@ -29,7 +31,7 @@ Executed in   15.20 secs    fish           external
    sys time   29.55 secs    1.64 millis   29.55 secs
 ```
 
-## whisper.cpp
+## [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
 
     cd ..
     git clone https://github.com/ggerganov/whisper.cpp.git
