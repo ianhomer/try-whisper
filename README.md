@@ -87,11 +87,10 @@ chunks of audio, 0.1 voice activation threshold.
     ./stream -m models/ggml-large-v3.bin -t 10 --step 1200 --length 5000 --keep 500 \
         -vth 0.1 -kc
 
+The output of this can be streamed to a file (and picked up by another process). When you do this keepin the step size equal to the chunk size ensures that a single version of each chunk is written. If the step size is less than the chunk size then each version of the chunk is written as each step is processed.
 
-
-On MacBook with 10 cores CPU is 30% on 2 of the cores.
-
-Large model is 3GB takes longer to download, but still runs comfortably. CPU at 50% on 2 of the cores.
+    ./stream -m models/ggml-large-v3.bin -t 10 --step 2000 --length 2000 --keep 500 \
+        -vth 0.1 -kc -f /tmp/audio.txt
 
 ## ffmpeg cheatsheet
 
