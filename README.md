@@ -58,6 +58,41 @@ Executed in    1.99 secs      fish           external
    sys time  242.85 millis    1.59 millis  241.25 millis
 ```
 
+### Stream
+
+Start transcribing of stream
+
+    ./stream -m models/ggml-medium.en.bin
+
+Which may, if you're watching the start of the second episode of Human Universe with Brian Cox, return something like
+
+```txt
+[ Silence ]
+(mouse clicking)
+(keyboard clicking)
+(clicking) (somber music)
+(soft music)
+Each one of us is made from mere matter.
+(classical music)
+Yet we are matter with curiosity. We ask questions.
+```
+
+This runs well on MacBook pro, using perhaps 20% of a couple of the CPUs. GPU is
+maxing out with large model (use `nvtop` to view that).
+
+Run with large model, 10 threads, step size of 1.2 seconds, length of each
+chunk/line 5 seconds, keep 0.5 seconds of previous step, keep content between
+chunks of audio, 0.1 voice activation threshold.
+
+    ./stream -m models/ggml-large-v3.bin -t 10 --step 1200 --length 5000 --keep 500 \
+        -vth 0.1 -kc
+
+
+
+On MacBook with 10 cores CPU is 30% on 2 of the cores.
+
+Large model is 3GB takes longer to download, but still runs comfortably. CPU at 50% on 2 of the cores.
+
 ## ffmpeg cheatsheet
 
 Convert audio to 16-bit wav which whisper.cpp requires
